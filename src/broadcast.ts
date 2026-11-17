@@ -1,4 +1,4 @@
-import type { Bot } from "grammy";
+import type { Bot, InlineKeyboard } from "grammy";
 import { listSubscribers } from "./store.js";
 
 const SEND_GAP_MS = 60; // ≈16 msg/s, well inside Telegram's 30 msg/s budget
@@ -17,6 +17,7 @@ export async function broadcast(
   bot: Bot,
   text: string,
   onProgress?: (sent: number, total: number) => void,
+  keyboard?: InlineKeyboard,
 ): Promise<BroadcastResult> {
   const subscribers = await listSubscribers();
   let sent = 0;
@@ -27,6 +28,7 @@ export async function broadcast(
       await bot.api.sendMessage(subscriber.id, text, {
         parse_mode: "HTML",
         link_preview_options: { is_disabled: true },
+        ...(keyboard ? { reply_markup: keyboard } : {}),
       });
       sent += 1;
     } catch {

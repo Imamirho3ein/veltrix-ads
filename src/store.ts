@@ -69,6 +69,11 @@ export async function saveSubscriber(
 // Scheduler state: rotation index, enabled flag and interval override.
 // ---------------------------------------------------------------------------
 
+export interface AdsTarget {
+  id: string;
+  title?: string;
+}
+
 export interface AdsState {
   /** Index into PROMOS for the next automatic post. */
   nextIndex: number;
@@ -77,6 +82,13 @@ export interface AdsState {
   intervalMinutes: number;
   postsSent: number;
   lastPostAt?: string;
+  /** Extra channels/groups where promos are posted (auto-registered via my_chat_member). */
+  targets: AdsTarget[];
+  /** Periodic promo DM to subscribers. */
+  dmEnabled: boolean;
+  /** Minutes between DM campaigns (0 = disabled). */
+  dmIntervalMinutes: number;
+  lastDmAt?: string;
 }
 
 const DEFAULT_STATE: AdsState = {
@@ -84,6 +96,9 @@ const DEFAULT_STATE: AdsState = {
   enabled: true,
   intervalMinutes: 0,
   postsSent: 0,
+  targets: [],
+  dmEnabled: true,
+  dmIntervalMinutes: 1440,
 };
 
 export async function getState(): Promise<AdsState> {
@@ -96,5 +111,27 @@ export async function saveState(update: Partial<AdsState>): Promise<AdsState> {
     const next = { ...current, ...update };
     await writeJson(STATE_FILE, next);
     return next;
+  });
+}
+
+export async function addTarget(id: string, title?: string): Promise<boolean> {
+  return serialize(async () => {
+    const state = await getState();
+    if (state.targets.some((target) => target.id === id)) return false;
+    await writeJson(STATE_FILE, {
+      ...state,
+      targets: [...state.targets, { id, title }],
+    });
+    return true;
+  });
+}
+
+export async function removeTarget(id: string): Promise<boolean> {
+  return serialize(async () => {
+    const state = await getState();
+    const targets = state.targets.filter((target) => target.id !== id);
+    if (targets.length === state.targets.length) return false;
+    await writeJson(STATE_FILE, { ...state, targets });
+    return true;
   });
 }

@@ -27,6 +27,8 @@ services:
         value: "@VeeltrixStudio"
       - key: ADS_INTERVAL_MINUTES
         value: "180"
+      - key: ADS_DM_INTERVAL_MINUTES
+        value: "1440"
       - key: MAIN_BOT_USERNAME
         value: VeltrixStudio_bot
       - key: TELEGRAM_CHANNEL_URL

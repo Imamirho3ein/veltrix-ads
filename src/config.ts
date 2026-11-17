@@ -20,6 +20,8 @@ export const env = {
   intervalMinutes: num(process.env.ADS_INTERVAL_MINUTES, 180),
   /** Main order bot that promo buttons deep-link into. */
   mainBotUsername: clean(process.env.MAIN_BOT_USERNAME) || "VeltrixStudio_bot",
+  /** Default minutes between promo DM campaigns to subscribers. */
+  dmIntervalMinutes: num(process.env.ADS_DM_INTERVAL_MINUTES, 1440),
   channelUrl: clean(process.env.TELEGRAM_CHANNEL_URL) || "https://t.me/VeeltrixStudio",
   supportUrl: clean(process.env.TELEGRAM_SUPPORT_URL) || "https://t.me/ImAmirh3ein",
   siteUrl: (clean(process.env.SITE_URL) || "https://veltrixstudio.ir").replace(/\/+$/, ""),

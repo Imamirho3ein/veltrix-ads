@@ -1,4 +1,4 @@
-# Render Blueprint — https://render.com/docs/blueprint-spec
+﻿# Render Blueprint â€” https://render.com/docs/blueprint-spec
 #
 # The ads bot runs 24/7 like the main bot. A chain-keep-alive GitHub workflow
 # pings /health every few minutes so the Free plan never sleeps (public repo =
@@ -34,10 +34,10 @@ services:
       - key: TELEGRAM_SUPPORT_URL
         value: "https://t.me/ImAmirh3ein"
       - key: SITE_URL
-        value: "https://veltrixstudio.com"
+        value: "https://veltrixstudio.ir"
       - key: INSTAGRAM_URL
         value: "https://instagram.com/veltrixstudio"
       - key: CONTACT_EMAIL
-        value: "hello@veltrixstudio.com"
+        value: "hello@veltrixstudio.ir"
       - key: BRAND_NAME
         value: VELTRIX STUDIO

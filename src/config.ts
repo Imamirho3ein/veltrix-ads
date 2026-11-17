@@ -1,4 +1,4 @@
-import "dotenv/config";
+﻿import "dotenv/config";
 
 function clean(value: string | undefined): string {
   return (value ?? "").trim();
@@ -22,9 +22,9 @@ export const env = {
   mainBotUsername: clean(process.env.MAIN_BOT_USERNAME) || "VeltrixStudio_bot",
   channelUrl: clean(process.env.TELEGRAM_CHANNEL_URL) || "https://t.me/VeeltrixStudio",
   supportUrl: clean(process.env.TELEGRAM_SUPPORT_URL) || "https://t.me/ImAmirh3ein",
-  siteUrl: (clean(process.env.SITE_URL) || "https://veltrixstudio.com").replace(/\/+$/, ""),
+  siteUrl: (clean(process.env.SITE_URL) || "https://veltrixstudio.ir").replace(/\/+$/, ""),
   instagramUrl: clean(process.env.INSTAGRAM_URL) || "https://instagram.com/veltrixstudio",
-  email: clean(process.env.CONTACT_EMAIL) || "hello@veltrixstudio.com",
+  email: clean(process.env.CONTACT_EMAIL) || "hello@veltrixstudio.ir",
   brandName: clean(process.env.BRAND_NAME) || "VELTRIX STUDIO",
 };
 

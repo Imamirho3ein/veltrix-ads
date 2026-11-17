@@ -1,0 +1,24 @@
+{
+  "name": "veltrix-ads-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "24/7 advertising & lead-generation bot for VELTRIX STUDIO — rotates promo posts in the channel, broadcasts campaigns and tracks funnel clicks into the main bot.",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "grammy": "^1.46.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

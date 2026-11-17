@@ -1,0 +1,43 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# The ads bot runs 24/7 like the main bot. A chain-keep-alive GitHub workflow
+# pings /health every few minutes so the Free plan never sleeps (public repo =
+# unlimited free Actions minutes).
+#
+# NOTE: the Free plan has no persistent disk. Subscriber list and rotation
+# state reset on every deploy/restart. For a persistent subscriber list, move
+# to the Starter plan and add a 1 GB disk mounted at /app/data.
+
+services:
+  - type: web
+    name: veltrix-ads
+    runtime: docker
+    region: frankfurt
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADS_BOT_TOKEN
+        sync: false
+      - key: ADMIN_TELEGRAM_IDS
+        value: "8917877282"
+      - key: ADS_CHANNEL_ID
+        value: "@VeeltrixStudio"
+      - key: ADS_INTERVAL_MINUTES
+        value: "180"
+      - key: MAIN_BOT_USERNAME
+        value: VeltrixStudio_bot
+      - key: TELEGRAM_CHANNEL_URL
+        value: "https://t.me/VeeltrixStudio"
+      - key: TELEGRAM_SUPPORT_URL
+        value: "https://t.me/ImAmirh3ein"
+      - key: SITE_URL
+        value: "https://veltrixstudio.com"
+      - key: INSTAGRAM_URL
+        value: "https://instagram.com/veltrixstudio"
+      - key: CONTACT_EMAIL
+        value: "hello@veltrixstudio.com"
+      - key: BRAND_NAME
+        value: VELTRIX STUDIO
